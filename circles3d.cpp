@@ -4,7 +4,7 @@
 #include <thread>
 #include <cmath>
 #include <string>
-#define D 25   // Distance to user
+#define D 25
 #define t 0.01 // time
 
 #define l 0.02 // x axis         rotational angles
