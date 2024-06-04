@@ -1,3 +1,4 @@
+/vertices and edges of a cube
 10,10,10
 10,-10,10
 -10,10,10

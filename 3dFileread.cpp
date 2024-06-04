@@ -1,24 +1,43 @@
-// Program to make a 3d spinning circle using the fucking terminal by reading a
-// file which has all coordinates inside
+/********************************************************************************************
+Program to make a 3d spinning circle using the fucking terminal by reading a file which has 
+all coordinates inside
+
+Author: Aarav Subberwal
+Date: 13/05/24
+
+"Go! My Minions"
+
+For the output to make even remote sense some terminal settings are required
+--> Open the setting in terminal File>Preferences>settings>terminal
+--> Font size = 6 scroll to find them
+--> Line spacing = 0
+--> Line height = 1.2
+
+The project has a few files to read and choose from. Just type the name into the main
+function of 3dFileread.cpp to run them. Also feel free to mess around with l,m,n which are
+the rotation angles to mess with the rotations.
+*********************************************************************************************/
 #include <iostream>
 #include <chrono>
 #include <thread>
 #include <cmath>
 #include <string>
+#include <vector>
 #include <fstream>
 #define D 25   // Distance to user
 #define t 0.01 // time
-
+#define SCALE 1
 #define l 0.02 // x axis         rotational angles
 #define m 0.02 // y axis
 #define n 0.02 // z axis
-const unsigned int Pixheight = 70, Pixwidth = 100;
-double sin_l = sin(l);
-double sin_m = sin(m); // calculating sin, cos beforehand to reduce calculations
-double sin_n = sin(n);
-double cos_l = cos(l);
-double cos_m = cos(m);
-double cos_n = cos(n);
+
+const unsigned short int Pixheight = 70, Pixwidth = 100;
+const double sin_l = sin(l);
+const double sin_m = sin(m); // calculating sin, cos beforehand to reduce calculations
+const double sin_n = sin(n);
+const double cos_l = cos(l);
+const double cos_m = cos(m);
+const double cos_n = cos(n);
 
 void wait(double wait_time_seconds)
 { // Wait(this many seconds) function
@@ -65,68 +84,63 @@ public:
 
 int main()
 {
-    std::string filename = "3d-data-cube.txt";
-
-    // Open the file in read mode
-    std::ifstream file(filename);
-    int lineCount = 0;
-    std::string li;
-    while (std::getline(file, li))
-    {
-        // Increment line count for each line read
-        lineCount++;
-    }
-    file.clear();                 // Clear any errors.
-    file.seekg(0, std::ios::beg); // Move the file pointer to the beginning.
-
-    Point3d coord[lineCount];
+    // Open whichever files you want, by timing the name here
+    std::ifstream file("3d-data-DwarvenHammer.txt");
+    
+    std::vector <Point3d> coord;
+    Point3d New_Point;    
     std::string line;
-    int a = 0, b = 0;
+    int b = 0;
     int pos[2];
     while (std::getline(file, line))
     {
+        if (line[0]=='/'){
+            continue;
+        }
         for (int i = 0; i < line.length(); i++)
         {
-            if (line[i] == ',')
+            if (line[i] == ',')         //each line has coordinates which are entered in
             {
                 pos[b] = i;
                 b++;
             }
         }
-        coord[a].x = std::stod(line.substr(0, pos[0]));
-        coord[a].y = std::stod(line.substr(pos[0] + 1, pos[1] - pos[0] - 1));
-        coord[a].z = std::stod(line.substr(pos[1] + 1));
+        
+        New_Point.x = SCALE*std::stod(line.substr(0, pos[0]));
+        New_Point.y = SCALE*std::stod(line.substr(pos[0] + 1, pos[1] - pos[0] - 1));
+        New_Point.z = SCALE*std::stod(line.substr(pos[1] + 1));
+
+        coord.push_back(New_Point);
         b = 0;
-        a++;
     }
 
     // Setting the screen
-    bool grid[Pixheight][Pixwidth];
+    bool screen[Pixheight][Pixwidth];
     for (int i = 0; i < Pixheight; ++i)
-    { // set the entire grid to false
-        std::fill(grid[i], grid[i] + Pixwidth, false);
+    { 
+        std::fill(screen[i], screen[i] + Pixwidth, false);
     }
     line = "";
     double flagx, flagy, flagz;
-    double time = 0;
 
     // loop to iterate every frame
     while (1)
     {
-        auto start = std::chrono::steady_clock::now();
+        auto start = std::chrono::steady_clock::now();  //start the timer
 
-        for (int i = 0; i < lineCount; i++)
+        for (auto &coordinate: coord)
         {
-            flagx = coord[i].x; // get all coord wrt to the origin
-            flagy = coord[i].y;
-            flagz = coord[i].z;
-            coord[i].x = getXAfterRot(flagx, flagy, flagz);
-            coord[i].y = getYAfterRot(flagx, flagy, flagz);
-            coord[i].z = getZAfterRot(flagx, flagy, flagz);
-            int prox = coord[i].prox(), proy = coord[i].proy();
-            if (proy > 0 && proy < Pixheight && prox > 0 && prox < Pixwidth)
-            { // puts them in the grid at suitable place
-                grid[proy][prox] = true;
+            flagx = coordinate.x; 
+            flagy = coordinate.y;
+            flagz = coordinate.z;
+            coordinate.x = getXAfterRot(flagx, flagy, flagz);
+            coordinate.y = getYAfterRot(flagx, flagy, flagz);
+            coordinate.z = getZAfterRot(flagx, flagy, flagz);     //stuff to rotate the pts
+            int prox = coordinate.prox(), proy = coordinate.proy();
+            //check if the projected values are within the domain of the screen
+            if (proy > 0 && proy < Pixheight && prox > 0 && prox < Pixwidth) 
+            { // puts them in the screen at suitable place
+                screen[proy][prox] = true;
             }
         }
 
@@ -137,10 +151,10 @@ int main()
         {
             for (int j = 0; j < Pixwidth; j++)
             {
-                if (grid[i][j])
+                if (screen[i][j])
                 {
-                    line += " # ";
-                }
+                    line += " # ";      //the projected values of the coordinates are put
+                }                       //in suitable places line by line
                 else
                 {
                     line += "   ";
@@ -148,13 +162,12 @@ int main()
             }
             std::cout << line << "\n"; // Prints the entire line at once
             line.clear();              // clears out the string to be reused by the next line
-            std::fill(grid[i], grid[i] + Pixwidth, false);
+            std::fill(screen[i], screen[i] + Pixwidth, false);
         }
-        auto end = std::chrono::steady_clock::now();
+        auto end = std::chrono::steady_clock::now();    //stop timer
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
         wait(t);
-        std::cout << 1000.0 / (duration.count()) << "\n";
-        time += 0.03;
+        std::cout << 1000.0 / (duration.count()) << "\n";  //print out the fps counter
     }
 
     return 0;
