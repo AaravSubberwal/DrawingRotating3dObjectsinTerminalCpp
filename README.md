@@ -4,10 +4,6 @@ So I was looking for some fancy programs to write and then I decided to make a c
 
 The resources I used was mostly this book my dad bought in 1994 called cutting edge 3d game programming with c++ by John De Goes. 
 
-I was looking for fancy programs to write and then I decided to make a circle generator in a terminal. When I finally made it, I was inspired and wanted to build something extraordinary. So I thought to make a 3D rotating cube in a terminal just like I did with the circle generator earlier. After a few days of work I did pull it off.
-
-The resources I used was mostly this book my dad bought in 1994 called Cutting Edge 3D Game Programming with C++ by John De Goes.
-
 Basically the program takes 3D coordinates as input, and projects it on a 2D screen. In the space, a point is denoted by "#" and nothing as whitespace. After making the desired image, the program clears out the terminal and prints it again. In every frame all points are rotated and then printed.
 
 For the output to make even remote sense some specific terminal settings are required. So far I've only tested the project in vscode.
