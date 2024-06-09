@@ -16,17 +16,13 @@ The project has a few files to read and choose from. Just type the name into the
 
 # Project Roadmap
 
-## Short Term Ideas
+## Ideas
 - Render a sphere in 3D
 - Adding light sources which reflect light on a sphere. Allow the light source to oscillate and look amazing.
 - Show multiple objects on the screen at once that rotate and translate individually.
 - Render objects as opaque, not displaying points which are behind others.
 - Use Unicode and color to make point size uniform, improving aesthetics, and add depth.
 - Explain the math behind the functions (rotational matrix, vector addition, 2D projection mapping)
-
-## Long Term
-> *"The future is in physics."*
 - Adding gravity, oscillations.
 - Building a primitive 3D game in which you can walk around on a floor with objects.
-- Building a database of the 2D projections of 3D shapes, from a finite set of viewing angles based on human visual acuity, from different humanly-discerible viewpoints for efficient rendering, and stopping rotation at points.
-- Building a 3D engine for virtual reality headsets, where 4D objects project to 3D and appear in 3D virtual space.
+
