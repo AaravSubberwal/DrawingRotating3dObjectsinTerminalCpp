@@ -17,12 +17,12 @@ The project has a few files to read and choose from. Just type the name into the
 # Project Roadmap
 
 ## Ideas
-- Render a sphere in 3D
-- Adding light sources which reflect light on a sphere. Allow the light source to oscillate and look amazing.
-- Show multiple objects on the screen at once that rotate and translate individually.
-- Render objects as opaque, not displaying points which are behind others.
-- Use Unicode and color to make point size uniform, improving aesthetics, and add depth.
-- Explain the math behind the functions (rotational matrix, vector addition, 2D projection mapping)
-- Adding gravity, oscillations.
-- Building a primitive 3D game in which you can walk around on a floor with objects.
+- [x] Render a sphere in 3D
+- [ ] Adding light sources which reflect light on a sphere. Allow the light source to oscillate and look amazing.
+- [ ] Show multiple objects on the screen at once that rotate and translate individually.
+- [ ] Render objects as opaque, not displaying points which are behind others.
+- [ ] Use Unicode and color to make point size uniform, improving aesthetics, and add depth.
+- [ ] Explain the math behind the functions (rotational matrix, vector addition, 2D projection mapping)
+- [ ] Adding gravity, oscillations.
+- [ ] Building a primitive 3D game in which you can walk around on a floor with objects.
 
