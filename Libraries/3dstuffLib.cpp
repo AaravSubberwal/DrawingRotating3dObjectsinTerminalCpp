@@ -66,8 +66,8 @@ void rotatePoint(Point3d &coordinate)
     coordinate.z = getZAfterRot(flagx, flagy, flagz); // stuff to rotate the pts
 }
 
-//This sexy function gets all the coordinates from the file supplied and returns a vector array
-//of all the points
+// This sexy function gets all the coordinates from the file supplied and returns a vector array
+// of all the points
 std::vector<Point3d> getCoordinatesfromFile(std::string fileName)
 {
     std::vector<Point3d> coord_list;
@@ -81,14 +81,14 @@ std::vector<Point3d> getCoordinatesfromFile(std::string fileName)
     {
         if (line[0] == '/')
         {
-            continue;   //so that i can comment in the txts if i want to
+            continue; // so that i can comment in the txts if i want to
         }
         for (int i = 0; i < line.length(); i++)
         {
             if (line[i] == ',') // each line has coordinates which are entered in
             {
                 pos[b] = i;
-                b++;                            //SMASH
+                b++; // SMASH
             }
         }
 
@@ -103,7 +103,26 @@ std::vector<Point3d> getCoordinatesfromFile(std::string fileName)
     return coord_list;
 }
 
-//Prints shit up
-void PrintEverything(){
-    
+// Prints shit up
+void PrintEverything(bool *screen)
+{
+    std::cout << "\033[H"; // clears out the terminal
+
+    for (int i = 0; i < Pixheight; i++)
+    {
+        for (int j = 0; j < Pixwidth; j++)
+        {
+            if (*(screen + i * Pixwidth + j))
+            {
+                line += " # "; // the projected values of the coordinates are put
+            } // in suitable places line by line
+            else
+            {
+                line += "   ";
+            }
+        }
+        std::cout << line << "\n"; // Prints the entire line at once
+        line.clear();              // clears out the string to be reused by the next line
+        std::fill(screen + i * Pixwidth, screen + (i + 1) * Pixwidth, false);;
+    }
 }

@@ -35,7 +35,6 @@ int main()
         std::fill(screen[i], screen[i] + Pixwidth, false);
     }
 
-
     // loop to iterate every frame
     while (1)
     {
@@ -54,33 +53,12 @@ int main()
         }
 
         // printing shit up
-
-        //PrintEverything(screen[i][j]);
-        std::cout << "\033[H"; // clears out the terminal
-
-        for (int i = 0; i < Pixheight; i++)
-        {
-            for (int j = 0; j < Pixwidth; j++)
-            {
-                if (screen[i][j])
-                {
-                    line += " # "; // the projected values of the coordinates are put
-                } // in suitable places line by line
-                else
-                {
-                    line += "   ";
-                }
-            }
-            std::cout << line << "\n"; // Prints the entire line at once
-            line.clear();              // clears out the string to be reused by the next line
-            std::fill(screen[i], screen[i] + Pixwidth, false);
-        }
+        PrintEverything(&screen[0][0]);
 
         auto end = std::chrono::steady_clock::now(); // stop timer
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
         wait(t);
         std::cout << 1000.0 / (duration.count()) << "\n"; // print out the fps counter
     }
-
     return 0;
 }
