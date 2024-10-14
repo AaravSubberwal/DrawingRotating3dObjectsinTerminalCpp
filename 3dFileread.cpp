@@ -28,7 +28,6 @@ int main()
 
     std::vector<Point3d> coord_list = getCoordinatesfromFile("txtFiles/" + file_you_want);
 
-    // Setting the screen
     bool screen[Pixheight][Pixwidth];
     for (int i = 0; i < Pixheight; ++i)
     {
@@ -38,24 +37,22 @@ int main()
     // loop to iterate every frame
     while (1)
     {
-        auto start = std::chrono::steady_clock::now(); // start the timer
+        auto start = std::chrono::steady_clock::now(); 
 
         for (auto &coordinate : coord_list)
         {
-            rotatePoint(coordinate); // function to rotate the pts
+            rotatePoint(coordinate);
 
             int prox = coordinate.prox(), proy = coordinate.proy();
-            // check if the projected values are within the domain of the screen
             if (proy > 0 && proy < Pixheight && prox > 0 && prox < Pixwidth)
-            { // puts them in the screen at suitable place
+            { 
                 screen[proy][prox] = true;
             }
         }
 
-        // printing shit up
         PrintEverything(&screen[0][0]);
 
-        auto end = std::chrono::steady_clock::now(); // stop timer
+        auto end = std::chrono::steady_clock::now(); 
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
         wait(t);
         std::cout << 1000.0 / (duration.count()) << "\n"; // print out the fps counter
