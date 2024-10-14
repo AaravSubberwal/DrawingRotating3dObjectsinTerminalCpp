@@ -1,11 +1,11 @@
 # 3d-engine
-
-So I was looking for some fancy programs to write and then I decided to make a circle generator in a terminal. When I finally made it I was inspired and wanted to build something even better. So I though Why not just make a 3d rotating cube in a terminal using the same sort of screen in the terminal I did for the circle generator earlier. After a few days of work I did pull it off.
+A program that reads vertices of arbitrary shapes from a file and visually displays their rotation in the terminal
 
 The resources I used was mostly this book my dad bought in 1994 called cutting edge 3d game programming with c++ by John De Goes. 
 
 Basically the program takes 3D coordinates as input, and projects it on a 2D screen. In the space, a point is denoted by "#" and nothing as whitespace. After making the desired image, the program clears out the terminal and prints it again. In every frame all points are rotated and then printed.
 
+# Required setting in vscode
 For the output to make even remote sense some specific terminal settings are required. So far I've only tested the project in vscode.
 --> Open the setting in terminal File>Preferences>settings>terminal
 --> Font size = 6 scroll to find them
