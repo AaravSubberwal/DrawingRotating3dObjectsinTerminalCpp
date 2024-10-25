@@ -3,7 +3,8 @@
 Author: Aarav Subberwal
 Date: 22/09/2024
 
-
+Pass into printeverything function more cleanly
+use binary files instead
 **************************************************************************************************/
 #include <iostream>
 #include <chrono>
@@ -24,12 +25,7 @@ class Point3d
 { // point3d class to define the points
 public:
     double x, y, z;
-    void setPos(double a, double b, double c)
-    {
-        x = a;
-        y = b;
-        z = c;
-    }
+    
     int prox()
     {
         return (static_cast<int>(std::round(D * x / (D + z)))) + (Pixwidth / 2);
@@ -103,7 +99,6 @@ std::vector<Point3d> getCoordinatesfromFile(std::string fileName)
     return coord_list;
 }
 
-// Prints shit up
 void PrintEverything(bool *screen)
 {
     std::cout << "\033[H"; // clears out the terminal
@@ -123,6 +118,7 @@ void PrintEverything(bool *screen)
         }
         std::cout << line << "\n"; // Prints the entire line at once
         line.clear();              // clears out the string to be reused by the next line
-        std::fill(screen + i * Pixwidth, screen + (i + 1) * Pixwidth, false);;
+        std::fill(screen + i * Pixwidth, screen + (i + 1) * Pixwidth, false);
+        ;
     }
 }
