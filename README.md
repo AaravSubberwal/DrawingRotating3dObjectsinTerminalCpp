@@ -1,18 +1,19 @@
-# 3d-engine
 A program that reads vertices of arbitrary shapes from a file and visually displays their rotation in the terminal
 
-The resources I used was mostly this book my dad bought in 1994 called cutting edge 3d game programming with c++ by John De Goes. 
-
-Basically the program takes 3D coordinates as input, and projects it on a 2D screen. In the space, a point is denoted by "#" and nothing as whitespace. After making the desired image, the program clears out the terminal and prints it again. In every frame all points are rotated and then printed.
-
-# Required setting in vscode
-For the output to make even remote sense some specific terminal settings are required. So far I've only tested the project in vscode.
+# To run
+clone the repo and run 3dfileread.cpp.
+For the output to make even remote sense some specific terminal settings are required. So far I've only tested the project in vscode. I already added these to the setting.json file but here they are just in case
 --> Open the setting in terminal File>Preferences>settings>terminal
 --> Font size = 6 scroll to find them
 --> Line spacing = 0
 --> Line height = 1.2
 
 The project has a few files to read and choose from. Just type the name into the main function of 3dFileread.cpp to run them. Also feel free to mess around with l,m,n which are the rotation angles to mess with the rotations.
+
+# background
+The resources I used was mostly this book my dad bought in 1994 called cutting edge 3d game programming with c++ by John De Goes. 
+
+Basically the program takes 3D coordinates as input, and projects it on a 2D screen. In the space, a point is denoted by "#" and nothing as whitespace. After making the desired image, the program clears out the terminal and prints it again. In every frame all points are rotated and then printed.
 
 # Project Roadmap
 
