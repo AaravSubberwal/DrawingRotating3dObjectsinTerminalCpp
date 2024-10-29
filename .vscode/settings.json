@@ -57,5 +57,7 @@
         "thread": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp"
-    }
+    },
+    "terminal.integrated.fontSize": 6,
+    "terminal.integrated.lineHeight": 1.2
 }

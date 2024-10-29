@@ -18,7 +18,7 @@ the rotation angles to mess with the rotations.
 "Go! My Minions"
 *********************************************************************************************/
 
-#include "libraries/3dstuffLib.cpp"
+#include "Libraries/3dstuffLib.cpp"
 
 int main()
 {

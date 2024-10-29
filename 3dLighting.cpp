@@ -1,8 +1,8 @@
 /********************************************************************************************
 Work in Progress atm
 *********************************************************************************************/
-#include "libraries/3dstuffLib.cpp"
-#include "libraries/Vector3D.cpp"
+#include "Libraries/3dstuffLib.cpp"
+#include "Libraries/Vector3D.cpp"
 
 class lightsource{
     public:
