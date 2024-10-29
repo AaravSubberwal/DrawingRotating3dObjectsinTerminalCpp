@@ -24,7 +24,7 @@ int main()
 {
     // Open whichever files you want, by timing the name here.
     // They're in the txtFiles folder.
-    std::string file_you_want = "cube.txt";
+    std::string file_you_want = "sphere.txt";
 
     std::vector<Point3d> coord_list = getCoordinatesfromFile("txtFiles/" + file_you_want);
 
@@ -33,7 +33,7 @@ int main()
     {
         std::fill(screen[i], screen[i] + Pixwidth, false);
     }
-
+    std::cout<<"\n";
     // loop to iterate every frame
     while (1)
     {
